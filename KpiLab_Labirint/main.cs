@@ -8,10 +8,13 @@ namespace KpiLab_Labirint
 {
     class MainClass
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("test");
+            labirintType1 test = new labirintType1(20, 20);
+            test.printLabirint();
             Console.ReadKey();
+            Console.Clear();
+            Main();
         }
     }
 }
