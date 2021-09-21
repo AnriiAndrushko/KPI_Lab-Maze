@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="graphPoint.cs" />
-    <Compile Include="labirintType1.cs" />
+    <Compile Include="LabirintBase.cs" />
+    <Compile Include="LabirintType1.cs" />
+    <Compile Include="LabirintType2.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

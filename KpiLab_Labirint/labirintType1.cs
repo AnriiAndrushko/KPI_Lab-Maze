@@ -6,43 +6,17 @@ using System.Collections.Generic;
 
 namespace KpiLab_Labirint
 {
-    class labirintType1
+    class LabirintType1 : LabirintBase
     {
-        private readonly int height;
-        private readonly int width;
-        private readonly bool [,] labirintMap;
-        static Random rnd = new Random();
-        private Tuple<int, int> startPos;
-        private Tuple<int, int> endPos;
-
-        public labirintType1(int width, int height)
+        public LabirintType1(int width, int height) : base(width, height)
         {
-            if (width < 5)
-            {
-                this.width = 5;
-            }
-            else
-            {
-                this.width = width;
-            }
-
-            if (height < 5)
-            {
-                this.height = 5;
-            }
-            else
-            {
-                this.height = height;
-            }
-            this.height = height;
-            labirintMap = GenerateLabirint(this.height, this.width);
+            labirintMap = GenerateLabirint(Height, Width);
         }
-
         public void printLabirint()
         {
-            for (int i = 0; i< height*2; i++)
+            for (int i = 0; i< Height*2; i++)
             {
-                for (int j = 0; j < width*2; j++)
+                for (int j = 0; j < Width * 2; j++)
                 {
                     if (startPos.Item1 == i && startPos.Item2 == j)
                     {
@@ -92,7 +66,7 @@ namespace KpiLab_Labirint
             Tuple<int, int> picked = visited[pickIndex];
             
             List<Tuple<int, int>> avaliable = new List<Tuple<int, int>>();
-            if (picked.Item1 + 2 < height * 2 && !curMap[picked.Item1 + 2, picked.Item2])
+            if (picked.Item1 + 2 < Height * 2 && !curMap[picked.Item1 + 2, picked.Item2])
             {
                 avaliable.Add(new Tuple<int, int>(2 , 0));
             }
@@ -104,7 +78,7 @@ namespace KpiLab_Labirint
             {
                 avaliable.Add(new Tuple<int, int>(0, -2));
             }
-            if (picked.Item2 + 2 < width * 2 && !curMap[picked.Item1, picked.Item2 + 2])
+            if (picked.Item2 + 2 < Width * 2 && !curMap[picked.Item1, picked.Item2 + 2])
             {
                 avaliable.Add(new Tuple<int, int>(0, 2));
             }
