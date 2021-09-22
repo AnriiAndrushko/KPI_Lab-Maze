@@ -10,11 +10,11 @@ namespace KpiLab_Labirint
     {
         static void Main()
         {
-            LabirintType1 test1 = new LabirintType1(10, 10);
-            test1.printLabirint();
+            LabirintBase test1 = new LabirintType1(10, 10);
+            test1.PrintLabirint();
             Console.WriteLine();
-            LabirintType2 test2 = new LabirintType2(10, 10);
-            test2.printLabirint();
+            LabirintBase test2 = new LabirintType2(10, 10);
+            test2.PrintLabirint();
             Console.ReadKey();
             Console.Clear();
             Main();

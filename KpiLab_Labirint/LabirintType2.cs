@@ -13,35 +13,6 @@ namespace KpiLab_Labirint
             labirintMap = GenerateLabirint(Height, Width);
         }
 
-        public void printLabirint()
-        {
-            for (int i = 0; i < Height * 2; i++)
-            {
-                for (int j = 0; j < Width * 2; j++)
-                {
-                    if (startPos.Item1 == i && startPos.Item2 == j)
-                    {
-                        Console.Write("1");
-                        continue;
-                    }
-                    if (endPos.Item1 == i && endPos.Item2 == j)
-                    {
-                        Console.Write("2");
-                        continue;
-                    }
-                    if (labirintMap[i, j])
-                    {
-                        Console.Write(" ");
-                    }
-                    else
-                    {
-                        Console.Write("#");
-                    }
-                }
-                Console.WriteLine();
-            }
-        }
-
         private bool[,] GenerateLabirint(int height, int width)
         {
             bool[,] curMap = new bool[height * 2, width * 2];
