@@ -11,21 +11,22 @@ namespace KpiLab_Labirint
             labirintMap = GenerateLabirint(Height, Width);
         }
 
+
         private bool[,] GenerateLabirint(int height, int width)
         {
             bool[,] curMap = new bool[height * 2, width * 2];
             Tuple<int, int> startPos = new Tuple<int, int>(rnd.Next(height) * 2, 0);
-            List<Tuple<int, int>> path = new List<Tuple<int, int>>();
+            LinkedList<Tuple<int, int>> path = new LinkedList<Tuple<int, int>>();
             this.startPos = startPos;
             curMap[startPos.Item1, startPos.Item2] = true;
-            path.Add(startPos);
+            path.AddLast(startPos);
             endPos = new Tuple<int, int>(-1, -1);
             RecursBuild(curMap, path);
 
             return curMap;
         }
 
-        private void RecursBuild(bool[,] curMap, List<Tuple<int, int>> path)
+        private void RecursBuild(bool[,] curMap, LinkedList<Tuple<int, int>> path)
         {
             if (path.Count == 0)
             {
@@ -64,7 +65,7 @@ namespace KpiLab_Labirint
             curMap[newCell.Item1, newCell.Item2] = true; //new cell
             curMap[path.Last().Item1 + avaliable[pickIndex].Item1 / 2,
                    path.Last().Item2 + avaliable[pickIndex].Item2 / 2] = true;//path to cell
-            path.Add(newCell);
+            path.AddLast(newCell);
             RecursBuild(curMap, path);
         }
     }

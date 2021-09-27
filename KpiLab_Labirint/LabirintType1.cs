@@ -34,7 +34,7 @@ namespace KpiLab_Labirint
             int pickIndex = rnd.Next(visited.Count);
             Tuple<int, int> picked = visited[pickIndex];
             
-            List<Tuple<int, int>> avaliable = new List<Tuple<int, int>>();
+            List<Tuple<int, int>> avaliable = new List<Tuple<int, int>>(4);
             if (picked.Item1 + 2 < Height * 2 && !curMap[picked.Item1 + 2, picked.Item2])
             {
                 avaliable.Add(new Tuple<int, int>(2 , 0));
