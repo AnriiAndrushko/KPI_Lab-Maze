@@ -1,8 +1,4 @@
 ﻿using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 
 namespace KpiLab_Labirint
 {
@@ -10,11 +6,10 @@ namespace KpiLab_Labirint
     {
         static void Main()
         {
-            LabirintBase test1 = new LabirintType1(10, 10);
-            test1.PrintLabirint();
-            Console.WriteLine();
-            LabirintBase test2 = new LabirintType2(10, 10);
-            test2.PrintLabirint();
+            ConsoleDebugger test1 = new ConsoleDebugger(new LabirintType1(10, 15));
+            test1.PrintMaze();
+            ConsoleDebugger test2 = new ConsoleDebugger(new LabirintType2(10, 15));
+            test2.PrintMaze();
             Console.ReadKey();
             Console.Clear();
             Main();
