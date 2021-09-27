@@ -6,19 +6,19 @@
 
 namespace KpiLab_Labirint
 {
-    class graphPoint
+    class GraphPoint
     {
-        public graphPoint UP { get; set; } = null;
-        public graphPoint DOWN { get; set; } = null;
-        public graphPoint LEFT { get; set; } = null;
-        public graphPoint RIGHT { get; set; } = null;
+        public GraphPoint UP { get; set; } = null;
+        public GraphPoint DOWN { get; set; } = null;
+        public GraphPoint LEFT { get; set; } = null;
+        public GraphPoint RIGHT { get; set; } = null;
 
         private readonly int UpLegth = -1;
         private readonly int DownLength = -1;
         private readonly int LeftLength = -1;
         private readonly int RightLength = -1;
 
-        graphPoint(int upLegth = -1, int downLength = -1, int leftLength = -1, int rightLength = -1)
+        GraphPoint(int upLegth = -1, int downLength = -1, int leftLength = -1, int rightLength = -1)
         {
             if (upLegth > 0)
             {

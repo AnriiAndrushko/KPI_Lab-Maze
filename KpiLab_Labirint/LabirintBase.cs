@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
 namespace KpiLab_Labirint
 {
-    class LabirintBase
+    abstract class LabirintBase
     {
         protected readonly int Height;
         protected readonly int Width;
