@@ -4,27 +4,33 @@ namespace KpiLab_Labirint
 {
     class ConsoleDebugger
     {
-        readonly int[,] MyMaze;
+        readonly MazeData MyMaze;
         public ConsoleDebugger(IMazeDataProvider inputData)
         {
             MyMaze = inputData.GetData();
         }
         public void PrintMaze()
         {
-            for (int i = 0; i < MyMaze.GetLength(0); i++)
+            for (int i = 0; i < MyMaze.LabData.GetLength(0); i++)
             {
-                for (int j = 0; j < MyMaze.GetLength(1); j++)
+                for (int j = 0; j < MyMaze.LabData.GetLength(1); j++)
                 {
-                    if (MyMaze[i, j] == 0)
+                    if(MyMaze.Start.Item1 == i&& MyMaze.Start.Item2 == j)
                     {
-                        Console.Write("#");
-                    }else if(MyMaze[i, j] == 1)
+                        Console.Write("S");
+                        continue;
+                    }
+                    if (MyMaze.End.Item1 == i && MyMaze.End.Item2 == j)
+                    {
+                        Console.Write("F");
+                        continue;
+                    }
+                    if (MyMaze.LabData[i, j])
                     {
                         Console.Write(" ");
-                    }
-                    else
+                    }else
                     {
-                        Console.Write(MyMaze[i, j]);
+                        Console.Write("#");
                     }
                 }
                 Console.WriteLine();

@@ -10,6 +10,7 @@ namespace KpiLab_Labirint
             test1.PrintMaze();
             ConsoleDebugger test2 = new ConsoleDebugger(new LabirintType2(10, 15));
             test2.PrintMaze();
+
             Console.ReadKey();
             Console.Clear();
             Main();

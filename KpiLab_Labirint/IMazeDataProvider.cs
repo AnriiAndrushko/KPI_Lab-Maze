@@ -2,6 +2,6 @@
 {
     interface IMazeDataProvider
     {
-        int[,] GetData();
+        MazeData GetData();
     }
 }
