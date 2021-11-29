@@ -52,9 +52,6 @@
     <Compile Include="bots\WaysFinder.cs" />
     <Compile Include="ConsoleDebugger.cs" />
     <Compile Include="IMazeDataProvider.cs" />
-    <Compile Include="LabirintBase.cs" />
-    <Compile Include="LabirintType1.cs" />
-    <Compile Include="LabirintType2.cs" />
     <Compile Include="main.cs" />
     <Compile Include="MazeData.cs" />
     <Compile Include="maze\LabirintBase.cs" />

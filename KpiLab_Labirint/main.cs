@@ -1,5 +1,6 @@
 ﻿using System;
 using KpiLab_Labirint.bots;
+using KpiLab_Labirint.maze;
 
 namespace KpiLab_Labirint
 {
