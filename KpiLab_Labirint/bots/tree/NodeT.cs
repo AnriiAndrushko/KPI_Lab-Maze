@@ -11,7 +11,7 @@ namespace KpiLab_Labirint.bots
         public int Data { get; set; }
         public bool visit { get; set; }
         public Tuple<NodeT, int> Left { get; set; } //Item 1 - Node; Item 2 - length
-        public Tuple<NodeT ,int> Right { get; set; }//Item 1 - Node; Item 2 - length
+        public Tuple<NodeT, int> Right { get; set; }//Item 1 - Node; Item 2 - length
         public Tuple<NodeT, int > Down { get; set; }//Item 1 - Node; Item 2 - length
         public Tuple<NodeT, int > Up { get; set; }  //Item 1 - Node; Item 2 - length
 
@@ -24,10 +24,11 @@ namespace KpiLab_Labirint.bots
             var node = new NodeT(data);
             switch (direction)
             {
-                case 1:
+                case 0:
                     if (Up == null)
                     {
                         Up = new Tuple<NodeT, int>(node, length);
+                        Up.Item1.Down = new Tuple<NodeT, int>(this, length);
                     }
                     else
                     {
@@ -35,10 +36,11 @@ namespace KpiLab_Labirint.bots
                         Up.Item1.Add(data, direction, length);
                     }
                     break;
-                case 2:
+                case 1:
                     if (Right == null)
                     {
                         Right = new Tuple<NodeT, int>(node, length);
+                        Right.Item1.Left = new Tuple<NodeT, int>(this, length);
                     }
                     else
                     {
@@ -46,10 +48,11 @@ namespace KpiLab_Labirint.bots
                         Right.Item1.Add(data, direction, length);
                     }
                     break;
-                case 3:
+                case 2:
                     if (Down == null)
                     {
                         Down = new Tuple<NodeT, int>(node, length);
+                        Down.Item1.Up = new Tuple<NodeT, int>(this, length);
                     }
                     else
                     {
@@ -57,10 +60,11 @@ namespace KpiLab_Labirint.bots
                         Down.Item1.Add(data, direction, length);
                     }
                     break;
-                case 4:
+                case 3:
                     if (Left == null)
                     {
                         Left = new Tuple<NodeT, int>(node, length);
+                        Left.Item1.Right = new Tuple<NodeT, int>(this, length);
                     }
                     else
                     {

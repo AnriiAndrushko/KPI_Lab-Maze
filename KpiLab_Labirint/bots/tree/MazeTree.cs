@@ -21,12 +21,12 @@ namespace KpiLab_Labirint.bots
         {
             if (!current.visit)
             {
-                if (Count > 0)
+                if (Count == 0)
                     for (int i = 0; i < SizeArray; i++)
                         for (int j = 0; j < derection[i].Count; j++)
                         {
-                            if (derection[i][j].Item2 >= 1 ||
-                                derection[i][j].Item2 <= -1)
+                            if (derection[i][j].Item2 > 1 &&
+                                derection[i][j].Item2 < -1)
                             {
                                 current.Add(derection[i][j].Item2, i, derection[i][j].Item1);
                             }
@@ -63,7 +63,6 @@ namespace KpiLab_Labirint.bots
                         }
                 }
             }
-            else
             current.visit = true;
         }
  
@@ -71,7 +70,7 @@ namespace KpiLab_Labirint.bots
         {
             switch (derection)
             {
-                case 0: 
+                case 0:
                     current = current.Up.Item1;
                     height = true;
                     break;
@@ -97,16 +96,33 @@ namespace KpiLab_Labirint.bots
             switch (derection)
             {
                 case 0:
-                    return current.Up.Item1.visit;
+                     if(current.Up!= null)
+                     {
+                        return current.Up.Item1.visit;
+                     }
+                     break;
                 case 1:
-                    return current.Right.Item1.visit;
+                     if(current.Right!= null)
+                     {
+                        return current.Right.Item1.visit;
+                     }
+                     break;
                 case 2:
-                    return current.Down.Item1.visit;
+                     if(current.Down!= null)
+                     {
+                        return current.Down.Item1.visit;
+                     }
+                     break;
                 case 3:
-                    return current.Left.Item1.visit;
-                default:
-                    return false;//тут треба помилку вивести по хорошому, а то потім ппц буде
+                     if(current.Left!= null)
+                     {
+                        return current.Left.Item1.visit;
+                     }
+                     break;
+                default:break;
+                    
             }
+            return false;//тут треба помилку вивести по хорошому, а то потім ппц буде
         }
     }
 }

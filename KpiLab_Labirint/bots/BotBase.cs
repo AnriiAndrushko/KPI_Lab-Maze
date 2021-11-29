@@ -9,7 +9,7 @@ namespace KpiLab_Labirint
     {
         protected MazeTree Memory = new MazeTree();
         protected Stack GoBack = new Stack();
-
+        protected bool BotWentBack = false; 
         public event Action<int, int> Step;
 
         protected void InvokeStep(int len, int dir)

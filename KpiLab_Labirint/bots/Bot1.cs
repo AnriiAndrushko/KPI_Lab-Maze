@@ -9,24 +9,27 @@ namespace KpiLab_Labirint.bots
 
         public Bot1(){ }
 
-        public override void MakeDecision(List<Tuple<int, int>>[] derection, int SizeArray)
+        public override void MakeDecision(List<Tuple<int, int>>[] derection, int SizeArray)      
         {
-            Memory.Add(derection, SizeArray);
+            if(!BotWentBack)
+                Memory.Add(derection, SizeArray);
+            BotWentBack = false;
             for (int i = 0; i < SizeArray; i++)
             {
                 for (int j = 0; j < derection[i].Count; j++)
                 {
                     if (!Memory.Visit(i))
                     {
-                        InvokeStep(derection[i][j].Item1, i);
                         Memory.GoTo(i);
                         GoBack.Push(derection[i][j].Item1, i);
+                        InvokeStep(derection[i][j].Item1, i);
                     }
                 }
             }
+            BotWentBack = true;
             Tuple<int, int> back = GoBack.Pop();
-            InvokeStep(back.Item1, (back.Item2 + 2) % 2);
-            Memory.GoTo((back.Item2 + 2) % 2);
+            Memory.GoTo((back.Item2 + 2) % SizeArray);
+            InvokeStep(back.Item1, (back.Item2 + 2) % SizeArray);
         }
 /*
  1. derection[]-напрямок (0-верх, 1-вправо, 2-вниз...)

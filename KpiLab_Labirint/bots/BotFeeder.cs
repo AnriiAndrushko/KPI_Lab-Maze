@@ -16,25 +16,25 @@ namespace KpiLab_Labirint.bots
         {
             MyBot = Bot;
             MyMaze = InputMaze.GetData();
-            CurY = MyMaze.Start.Item2;
-            CurX = MyMaze.Start.Item1;
+            CurY = MyMaze.Start.Item1;
+            CurX = MyMaze.Start.Item2;
     
             MyBot.Step += GetWays;
         }
 
         public void StartSearching()
         {
-            MyBot.MakeDecision(FindWay(MyMaze.LabData, MyMaze.End, new Tuple<int, int>(CurX, CurY)));
+            MyBot.MakeDecision(FindWay(MyMaze.LabData, MyMaze.End, new Tuple<int, int>(CurY, CurX)));
         }
 
         void GetWays(int len, int dir)
         {
-                 if (dir == 0) { CurY += len; }
+                 if (dir == 0) { CurY -= len; }
             else if (dir == 1) { CurX += len; }
-            else if (dir == 2) { CurY -= len; }
+            else if (dir == 2) { CurY += len; }
             else if (dir == 3) { CurX -= len; }
 
-            MyBot.MakeDecision(FindWay(MyMaze.LabData, MyMaze.End, new Tuple<int, int>(CurX, CurY)));
+            MyBot.MakeDecision(FindWay(MyMaze.LabData, MyMaze.End, new Tuple<int, int>(CurY, CurX)));
         }
 
 
@@ -192,7 +192,5 @@ namespace KpiLab_Labirint.bots
 
             return ways;
         }
-
-
     }
 }

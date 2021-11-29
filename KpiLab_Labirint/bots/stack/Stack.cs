@@ -21,7 +21,9 @@ namespace KpiLab_Labirint.bots
         {
             if (Count > 0)
             {
-                return Items.LastOrDefault();
+                Tuple<int, int> tmp = Items.Last();
+                Items.RemoveAt(Count - 1);
+                return tmp;
             }
             else
             {
