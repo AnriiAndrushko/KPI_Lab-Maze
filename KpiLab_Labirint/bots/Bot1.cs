@@ -11,11 +11,26 @@ namespace KpiLab_Labirint.bots
 
         public override void MakeDecision(List<Tuple<int, int>>[] derection, int SizeArray)      
         {
+            if (Memory.Exit())
+	        {
+                return;
+	        }
             if(!BotWentBack)
                 Memory.Add(derection, SizeArray);
             BotWentBack = false;
+
             for (int i = 0; i < SizeArray; i++)
-            {
+                for (int j = 0; j < derection[i].Count; j++)
+                {
+                    if (derection[i][j].Item2 == 2)
+	                {
+                        Memory.GoTo(i, j);
+                        InvokeStep(derection[i][j].Item1, i);
+                        return;
+	                }
+                }
+
+            for (int i = 0; i < SizeArray; i++)
                 for (int j = 0; j < derection[i].Count; j++)
                 {
                     if (!Memory.Visit(i))
@@ -23,9 +38,10 @@ namespace KpiLab_Labirint.bots
                         Memory.GoTo(i);
                         GoBack.Push(derection[i][j].Item1, i);
                         InvokeStep(derection[i][j].Item1, i);
+                        return;
                     }
                 }
-            }
+
             BotWentBack = true;
             Tuple<int, int> back = GoBack.Pop();
             Memory.GoTo((back.Item2 + 2) % SizeArray);

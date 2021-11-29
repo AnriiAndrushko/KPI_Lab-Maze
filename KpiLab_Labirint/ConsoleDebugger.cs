@@ -36,16 +36,17 @@ namespace KpiLab_Labirint
                         Console.Write(" ");
                     }else
                     {
-                        Console.Write("#");
+                        Console.Write(".");
                     }
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
         }
-
+        
         private void PrintStepOnMaze(int len, int dir)
         {
+
                  if (dir == 0) { BotY -= len; }
             else if (dir == 1) { BotX += len; }
             else if (dir == 2) { BotY += len; }
@@ -76,12 +77,13 @@ namespace KpiLab_Labirint
                         Console.Write(" ");
                     }else
                     {
-                        Console.Write("#");
+                        Console.Write(".");
                     }
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
         }
+        
     }
 }

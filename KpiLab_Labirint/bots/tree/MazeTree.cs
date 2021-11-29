@@ -25,7 +25,7 @@ namespace KpiLab_Labirint.bots
                     for (int i = 0; i < SizeArray; i++)
                         for (int j = 0; j < derection[i].Count; j++)
                         {
-                            if (derection[i][j].Item2 > 1 &&
+                            if (derection[i][j].Item2 > 1 ||
                                 derection[i][j].Item2 < -1)
                             {
                                 current.Add(derection[i][j].Item2, i, derection[i][j].Item1);
@@ -50,9 +50,10 @@ namespace KpiLab_Labirint.bots
                     for (; i < SizeArray; i += 2)
                         for (int j = 0; j < derection[i].Count; j++)
                         {
-                            if (derection[i][j].Item2 >= 1 ||
-                                derection[i][j].Item2 <= -1)
+                            if (derection[i][j].Item2 > 1 ||
+                                derection[i][j].Item2 < -1)
                             {
+                                
                                 current.Add(derection[i][j].Item2, i, derection[i][j].Item1);
                             }
                             else
@@ -65,8 +66,13 @@ namespace KpiLab_Labirint.bots
             }
             current.visit = true;
         }
- 
-        public void GoTo(int derection)
+
+        public bool Exit()
+        {
+            return current.Data == 2;
+        }
+
+        public void GoTo(int derection, int StepSize = 1)
         {
             switch (derection)
             {
@@ -88,6 +94,10 @@ namespace KpiLab_Labirint.bots
                     break;
                 default:
                     break;
+            }
+            if (StepSize > 1) 
+            {
+                GoTo(derection, --StepSize);
             }
         }
 

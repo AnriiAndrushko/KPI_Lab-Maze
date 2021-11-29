@@ -8,7 +8,7 @@ namespace KpiLab_Labirint
     {
         static void Main()
         {
-            LabirintBase lab1 = new LabirintType1(10, 10);
+            LabirintBase lab1 = new LabirintType1(5, 5);
             //ConsoleDebugger test2 = new ConsoleDebugger(new LabirintType2(10, 15));
             //test2.PrintMaze();
 
@@ -26,7 +26,6 @@ namespace KpiLab_Labirint
             //number = Console.ReadLine();
             //y = Convert.ToInt32(number);
             //feeder.DebugWays(x, y);
-
             Console.ReadKey();
             Console.Clear();
             Main();
