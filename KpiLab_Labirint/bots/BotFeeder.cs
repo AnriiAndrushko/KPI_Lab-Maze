@@ -1,11 +1,57 @@
-﻿using System;
+﻿using KpiLab_Labirint.maze;
+using System;
 using System.Collections.Generic;
 
 namespace KpiLab_Labirint.bots
 {
-    class WaysFinder
+    class BotFeeder
     {
-        public static List<Tuple<int, int>>[] FindWay(bool[,] maze1, Tuple<int, int> start, Tuple<int, int> end, Tuple<int, int> dot)
+        private MazeData MyMaze;
+        private int CurX, CurY;
+        private IBot MyBot;
+
+
+
+        public BotFeeder(IMazeDataProvider InputMaze, IBot Bot)
+        {
+            MyBot = Bot;
+            MyMaze = InputMaze.GetData();
+            CurY = MyMaze.Start.Item2;
+            CurX = MyMaze.Start.Item1;
+    
+            MyBot.Step += GetWays;
+        }
+
+        public void StartSearching()
+        {
+            MyBot.MakeDecision(FindWay(MyMaze.LabData, MyMaze.End, new Tuple<int, int>(CurX, CurY)));
+        }
+
+        void GetWays(int len, int dir)
+        {
+                 if (dir == 0) { CurY += len; }
+            else if (dir == 1) { CurX += len; }
+            else if (dir == 2) { CurY -= len; }
+            else if (dir == 3) { CurX -= len; }
+
+            MyBot.MakeDecision(FindWay(MyMaze.LabData, MyMaze.End, new Tuple<int, int>(CurX, CurY)));
+        }
+
+
+        public void DebugWays(int x, int y)
+        {
+            List<Tuple<int, int>>[] WAYS = FindWay(MyMaze.LabData, MyMaze.End, new Tuple<int, int>(x, y));
+            foreach (List<Tuple<int, int>> way in WAYS){
+                Console.Write("===");
+                foreach (Tuple<int, int> stan in way)
+                {
+                    Console.Write(stan.ToString());
+                }
+                Console.WriteLine("===");
+            }
+        }
+
+        static List<Tuple<int, int>>[] FindWay(bool[,] maze1, Tuple<int, int> end, Tuple<int, int> dot)
         {
             int lenght = maze1.GetLength(0);
             int width = maze1.GetLength(1);
@@ -72,7 +118,7 @@ namespace KpiLab_Labirint.bots
                 }
                 up--;
                 counterUP++;
-                if (up == end.Item1)
+                if (up == end.Item1&& column==end.Item2)
                 {
                     ways[0].Add(new Tuple<int, int>(counterUP, 2));
                 }
@@ -94,7 +140,7 @@ namespace KpiLab_Labirint.bots
                 }
                 right++;
                 counterRight++;
-                if (right == end.Item2)
+                if (right == end.Item2 && line == end.Item1)
                 {
                     ways[1].Add(new Tuple<int, int>(counterRight, 2));
                 }
@@ -116,7 +162,7 @@ namespace KpiLab_Labirint.bots
                 }
                 down++;
                 counterDown++;
-                if (down == end.Item1)
+                if (down == end.Item1 && column == end.Item2)
                 {
                     ways[2].Add(new Tuple<int, int>(counterDown, 2));
                 }
@@ -138,7 +184,7 @@ namespace KpiLab_Labirint.bots
                 }
                 left--;
                 counterLeft++;
-                if (left == end.Item2)
+                if (left == end.Item2 && line == end.Item1)
                 {
                     ways[3].Add(new Tuple<int, int>(counterLeft, 2));
                 }

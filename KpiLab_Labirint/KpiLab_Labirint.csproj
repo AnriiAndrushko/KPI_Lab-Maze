@@ -49,8 +49,9 @@
     <Compile Include="bots\stack\Stack.cs" />
     <Compile Include="bots\tree\MazeTree.cs" />
     <Compile Include="bots\tree\NodeT.cs" />
-    <Compile Include="bots\WaysFinder.cs" />
+    <Compile Include="bots\BotFeeder.cs" />
     <Compile Include="ConsoleDebugger.cs" />
+    <Compile Include="IBot.cs" />
     <Compile Include="IMazeDataProvider.cs" />
     <Compile Include="main.cs" />
     <Compile Include="MazeData.cs" />

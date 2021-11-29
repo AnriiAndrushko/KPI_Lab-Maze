@@ -6,7 +6,6 @@ namespace KpiLab_Labirint.bots
 {
     class Bot1 : BotBase
     {
-        public event Action<int, int> Step;
 
         public Bot1(){ }
 
@@ -19,14 +18,14 @@ namespace KpiLab_Labirint.bots
                 {
                     if (!Memory.Visit(i))
                     {
-                        Step?.Invoke(derection[i][j].Item1, i);
+                        InvokeStep(derection[i][j].Item1, i);
                         Memory.GoTo(i);
                         GoBack.Push(derection[i][j].Item1, i);
                     }
                 }
             }
             Tuple<int, int> back = GoBack.Pop();
-            Step?.Invoke(back.Item1, (back.Item2 + 2) % 2);
+            InvokeStep(back.Item1, (back.Item2 + 2) % 2);
             Memory.GoTo((back.Item2 + 2) % 2);
         }
 /*
