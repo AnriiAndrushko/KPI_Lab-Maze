@@ -1,4 +1,5 @@
 ﻿using System;
+using KpiLab_Labirint.bots;
 
 namespace KpiLab_Labirint
 {
@@ -14,6 +15,8 @@ namespace KpiLab_Labirint
             Console.ReadKey();
             Console.Clear();
             Main();
+
+            BotBase bot1 = new Bot1();
         }
     }
 }

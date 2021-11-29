@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KpiLab_Labirint
+namespace KpiLab_Labirint.maze
 {
     class LabirintType2 : LabirintBase
     {

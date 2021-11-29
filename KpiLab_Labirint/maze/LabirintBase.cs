@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KpiLab_Labirint
+namespace KpiLab_Labirint.maze
 {
     abstract class LabirintBase : IMazeDataProvider
     {

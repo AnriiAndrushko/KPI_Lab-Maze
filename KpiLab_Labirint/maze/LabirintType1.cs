@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KpiLab_Labirint
+namespace KpiLab_Labirint.maze
 {
     class LabirintType1 : LabirintBase
     {

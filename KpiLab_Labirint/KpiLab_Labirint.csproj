@@ -44,7 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BotBase.cs" />
+    <Compile Include="bots\Bot1.cs" />
+    <Compile Include="bots\BotBase.cs" />
+    <Compile Include="bots\stack\Stack.cs" />
+    <Compile Include="bots\tree\MazeTree.cs" />
+    <Compile Include="bots\tree\NodeT.cs" />
+    <Compile Include="bots\WaysFinder.cs" />
     <Compile Include="ConsoleDebugger.cs" />
     <Compile Include="IMazeDataProvider.cs" />
     <Compile Include="LabirintBase.cs" />
@@ -52,12 +57,18 @@
     <Compile Include="LabirintType2.cs" />
     <Compile Include="main.cs" />
     <Compile Include="MazeData.cs" />
+    <Compile Include="maze\LabirintBase.cs" />
+    <Compile Include="maze\LabirintType1.cs" />
+    <Compile Include="maze\LabirintType2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
