@@ -5,7 +5,7 @@ namespace KpiLab_Labirint.maze
 {
     class LabirintType1 : LabirintBase
     {
-        public LabirintType1(int width, int height) : base(width, height)
+        public LabirintType1(int width, int height, int seed = 2343232) : base(width, height, seed)
         {
             labirintMap = GenerateLabirint(Height, Width);
         }

@@ -7,8 +7,9 @@ namespace KpiLab_Labirint.maze
         protected readonly int Height;
         protected readonly int Width;
 
-        protected LabirintBase(int height, int width)
+        protected LabirintBase(int height, int width, int seed)
         {
+            rnd = new Random(seed);
             if (height < 5)
             {
                 Height = 5;
@@ -33,7 +34,7 @@ namespace KpiLab_Labirint.maze
         }
 
         protected bool[,] labirintMap;
-        protected static Random rnd = new Random();
+        protected Random rnd;
         protected Tuple<int, int> startPos;
         protected Tuple<int, int> endPos;
     }
