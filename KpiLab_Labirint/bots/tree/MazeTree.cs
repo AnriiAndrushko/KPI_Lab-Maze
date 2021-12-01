@@ -72,7 +72,7 @@ namespace KpiLab_Labirint.bots
             return current.Data == 2;
         }
 
-        public void GoTo(int derection, int StepSize = 1)
+        public void GoTo(int derection, int StepSize = 0)
         {
             switch (derection)
             {
@@ -95,7 +95,7 @@ namespace KpiLab_Labirint.bots
                 default:
                     break;
             }
-            if (StepSize > 1) 
+            if (StepSize >= 1) 
             {
                 GoTo(derection, --StepSize);
             }

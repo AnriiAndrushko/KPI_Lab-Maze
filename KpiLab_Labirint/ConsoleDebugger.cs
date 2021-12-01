@@ -59,7 +59,7 @@ namespace KpiLab_Labirint
                 {
                     if(BotX == j&& BotY == i)
                     {
-                        Console.Write("B");
+                        Console.Write((char)11);
                         continue;
                     }
                     if(MyMaze.Start.Item1 == i&& MyMaze.Start.Item2 == j)
@@ -77,12 +77,14 @@ namespace KpiLab_Labirint
                         Console.Write(" ");
                     }else
                     {
-                        Console.Write(".");
+                        Console.Write('#');
                     }
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
+            Console.WriteLine();
+            Console.ReadKey();
         }
         
     }
