@@ -88,8 +88,10 @@ namespace KpiLab_Labirint
                 }
                 Console.WriteLine();
             }
-            Console.Write("\nThe number of iterations - " + iterations + "\nThe number of steps - " + steps + "\n\n\n");
+            Console.WriteLine();
+            Console.Write("\nThe number of iterations - " + iterations + "\nThe number of steps - " + steps + "\n");
             Console.ReadKey();
+            Console.WriteLine();
         }
         
     }
