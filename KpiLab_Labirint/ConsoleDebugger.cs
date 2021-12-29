@@ -7,6 +7,10 @@ namespace KpiLab_Labirint
         readonly MazeData MyMaze;
         readonly IBot MyBot;
         private int BotX, BotY;
+        
+        private int iterations;
+        private int steps;
+        
         public ConsoleDebugger(IMazeDataProvider inputData, IBot bot)
          {
             MyMaze = inputData.GetData();
@@ -46,6 +50,8 @@ namespace KpiLab_Labirint
         
         private void PrintStepOnMaze(int len, int dir)
         {
+            iterations++;
+            steps += len;
 
                  if (dir == 0) { BotY -= len; }
             else if (dir == 1) { BotX += len; }
@@ -83,8 +89,9 @@ namespace KpiLab_Labirint
                 Console.WriteLine();
             }
             Console.WriteLine();
-            Console.WriteLine();
+            Console.Write("\nThe number of iterations - " + iterations + "\nThe number of steps - " + steps + "\n");
             Console.ReadKey();
+            Console.WriteLine();
         }
         
     }
