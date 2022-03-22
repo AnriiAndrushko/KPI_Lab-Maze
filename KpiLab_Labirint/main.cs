@@ -8,14 +8,14 @@ namespace KpiLab_Labirint
     {
         static void Main()
         {
+            //TODO fabrik
             Random rnd = new Random();
             LabirintBase lab1 = new LabirintType1(10, 10, rnd.Next());
-            //ConsoleDebugger test2 = new ConsoleDebugger(new LabirintType2(10, 15));
-            //test2.PrintMaze();
 
 
             BotBase bot1 = new Bot1();
-            ConsoleDebugger test1 = new ConsoleDebugger(lab1, bot1);
+            BotStatisticsHandler stats = new BotStatisticsHandler(bot1);
+            ConsoleDebugger test1 = new ConsoleDebugger(lab1, bot1, stats);
             BotFeeder feeder = new BotFeeder(lab1, bot1);
            
             feeder.StartSearching();

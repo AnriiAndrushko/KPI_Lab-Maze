@@ -8,10 +8,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>KpiLab_Labirint</RootNamespace>
     <AssemblyName>KpiLab_Labirint</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StatisticsHandler.cs" />
     <Compile Include="bots\Bot1.cs" />
     <Compile Include="bots\BotBase.cs" />
     <Compile Include="bots\stack\Stack.cs" />
