@@ -21,7 +21,7 @@ namespace KpiLab_Labirint
     }
     class MazeSimBuilder
     {
-        public LabirintStep newBuilder()
+        public LabirintStep newSimulation()
         {
             return new Steps();
         }
