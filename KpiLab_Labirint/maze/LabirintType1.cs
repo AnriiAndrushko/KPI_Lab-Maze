@@ -31,6 +31,7 @@ namespace KpiLab_Labirint.maze
 
         private void RecursBuild(List<Tuple<int, int>> visited, bool[,] curMap)
         {
+            steps++;
             int pickIndex = rnd.Next(visited.Count);
             Tuple<int, int> picked = visited[pickIndex];
             

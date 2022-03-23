@@ -1,20 +1,21 @@
 ﻿using System;
+using KpiLab_Labirint.maze;
 
 namespace KpiLab_Labirint.statistic
 {
     class BotStatisticsHandler
     {
-        public BotStatisticsHandler(IBot MyBot)
+        private int botIterations;
+        private int botSteps;
+        public BotStatisticsHandler(IBot bot)
         {
             botIterations = 0;
             botSteps = 0;
-            MyBot.Step += (int len, int dir) => {
+            bot.Step += (int len, int dir) => {
                 BotSteps += len;
                 BotIterations++;
             };
         }
-        private int botIterations;
-        private int botSteps;
         public int BotIterations {
             get { return botIterations; }
             set { if (value != botIterations+1) { throw new Exception(); } else { botIterations = value; } }
@@ -23,6 +24,19 @@ namespace KpiLab_Labirint.statistic
         {
             get { return botSteps; }
             set { if (value <= botSteps) { throw new Exception(); } else { botSteps = value; } }
+        }
+    }
+    class MazeStatisticsHandler
+    {
+        private int generationSteps = 0;
+        public MazeStatisticsHandler(LabirintBase labirint)
+        {
+            generationSteps = labirint.Steps;
+        }
+        public int GenerationSteps
+        {
+            get { return generationSteps; }
+            set { if (value <= generationSteps) { throw new Exception(); } else { generationSteps = value; } }
         }
     }
 }

@@ -10,9 +10,13 @@ namespace KpiLab_Labirint
         static void Main()
         {
             Random rnd = new Random();
-            MazeSimulator Sim = new MazeSimBuilder().newSimulation().withLabirint(new LabirintType1(10, 10, rnd.Next())).withBot(new Bot1()).visualizeWith(new ConsoleDebugger()).build();
-            //MazeSimulator Sim = new MazeSimBuilder().newSimulation().withLabirint(new LabirintType1(10, 10, rnd.Next())).withBot(new Bot1()).withoutGraphic().build();
-            Sim.StartSimulation();
+            MazeSimulator Sim = new MazeSimBuilder().newSimulation().
+                                                     withLabirint(new LabirintType1(10, 10, rnd.Next())).
+                                                     withBot(new Bot1()).
+                                                     visualizeWith(new ConsoleDebugger()).
+                                                     build();
+            Sim.PrintMazeInfo();
+            //Sim.StartSimulation();
             Console.WriteLine("Done");
             Console.ReadKey();
             Console.Clear();

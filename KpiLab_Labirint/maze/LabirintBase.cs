@@ -6,9 +6,11 @@ namespace KpiLab_Labirint.maze
     {
         protected readonly int Height;
         protected readonly int Width;
-
+        protected int steps;
+        public int Steps { get { return steps; }}
         protected LabirintBase(int height, int width, int seed)
         {
+            steps = 0;
             rnd = new Random(seed);
             if (height < 5)
             {
@@ -27,7 +29,6 @@ namespace KpiLab_Labirint.maze
                 Width = width;
             }
         }
-
         public MazeData GetData()
         {
             return new MazeData(labirintMap, startPos, endPos);

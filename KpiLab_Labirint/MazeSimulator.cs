@@ -8,7 +8,8 @@ namespace KpiLab_Labirint
     {
         protected LabirintBase Labirint;// = new LabirintType1(10, 10, rnd.Next());
         protected BotBase Bot;// = new Bot1();
-        protected BotStatisticsHandler Stats;// = new BotStatisticsHandler(bot1);
+        protected BotStatisticsHandler BotStats;
+        protected MazeStatisticsHandler MazeStats;// = new BotStatisticsHandler(bot1);
         protected VisualBase Visual;// = new ConsoleDebugger(lab1, bot1, stats);
         protected BotFeeder Feeder;// = new BotFeeder(lab1, bot1);
         public void StartSimulation()
@@ -17,6 +18,14 @@ namespace KpiLab_Labirint
                 throw new System.Exception("USE CONSTRUCTOR!!!");
             }
             Feeder.StartSearching();
+        }
+        public void PrintMazeInfo()
+        {
+            if (Visual == null)
+            {
+                throw new System.Exception("You dont specify visual");
+            }
+            Visual.PrintMaze();
         }
     }
     class MazeSimBuilder
@@ -57,13 +66,14 @@ namespace KpiLab_Labirint
             public BotStep withLabirint(LabirintBase labirintType)
             {
                 Labirint = labirintType;
+                MazeStats = new MazeStatisticsHandler(Labirint);
                 return this;
             }
 
             public VisualStep withBot(BotBase botType)
             {
                 Bot = botType;
-                Stats = new BotStatisticsHandler(Bot);
+                BotStats = new BotStatisticsHandler(Bot);
                 return this;
             }
 
@@ -74,7 +84,7 @@ namespace KpiLab_Labirint
 
             public BuildStep visualizeWith(VisualBase visual)
             {
-                visual.Init(Labirint, Bot, Stats);
+                visual.Init(Labirint, Bot, BotStats, MazeStats);
                 Visual = visual;
                 return this;
             }

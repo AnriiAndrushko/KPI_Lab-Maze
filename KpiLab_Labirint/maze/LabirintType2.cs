@@ -22,12 +22,12 @@ namespace KpiLab_Labirint.maze
             path.AddLast(startPos);
             endPos = new Tuple<int, int>(-1, -1);
             RecursBuild(curMap, path);
-
             return curMap;
         }
 
         private void RecursBuild(bool[,] curMap, LinkedList<Tuple<int, int>> path)
         {
+            steps++;
             if (path.Count == 0)
             {
                 return;
