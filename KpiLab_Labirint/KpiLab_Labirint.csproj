@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MazeSimulator.cs" />
     <Compile Include="StatisticsHandler.cs" />
     <Compile Include="bots\Bot1.cs" />
     <Compile Include="bots\BotBase.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="maze\LabirintType1.cs" />
     <Compile Include="maze\LabirintType2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisualBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

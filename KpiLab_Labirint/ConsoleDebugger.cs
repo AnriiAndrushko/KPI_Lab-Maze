@@ -2,24 +2,13 @@
 
 namespace KpiLab_Labirint
 {
-    class ConsoleDebugger
+    class ConsoleDebugger : VisualBase
     {
-        readonly MazeData MyMaze;
-        readonly IBot MyBot;
-        private int BotX, BotY;
-        
-        private BotStatisticsHandler stats;
-
-        public ConsoleDebugger(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler stats)
-         {
-            MyMaze = inputData.GetData();
-            MyBot = bot;
-            BotX = MyMaze.Start.Item2;
-            BotY = MyMaze.Start.Item1;
-            MyBot.Step += PrintStepOnMaze;
-
-            this.stats = stats;
+        public override void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler stats)
+        {
+            base.Init(inputData, bot, stats);
         }
+        public ConsoleDebugger() { }
         public void PrintMaze()
         {
             for (int i = 0; i < MyMaze.LabData.GetLength(0); i++)
@@ -48,8 +37,7 @@ namespace KpiLab_Labirint
             }
             Console.WriteLine();
         }
-        
-        private void PrintStepOnMaze(int len, int dir)
+        protected override void PrintStepOnMaze(int len, int dir)
         {
                  if (dir == 0) { BotY -= len; }
             else if (dir == 1) { BotX += len; }
@@ -91,6 +79,5 @@ namespace KpiLab_Labirint
             Console.ReadKey();
             Console.WriteLine();
         }
-        
     }
 }

@@ -16,7 +16,7 @@ namespace KpiLab_Labirint
         private int botIterations;
         private int botSteps;
         public int BotIterations {
-            get { return botSteps; }
+            get { return botIterations; }
             set { if (value != botIterations+1) { throw new Exception(); } else { botIterations = value; } }
         }
         public int BotSteps
