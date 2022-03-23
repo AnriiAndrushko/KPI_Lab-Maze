@@ -17,6 +17,10 @@ namespace KpiLab_Labirint
             if (Labirint == null) {
                 throw new System.Exception("USE CONSTRUCTOR!!!");
             }
+            if (!Labirint.IsMazeGenerated)
+            {
+                Labirint.BeginMazeGeneration();
+            }
             Feeder.StartSearching();
         }
         public void PrintMazeInfo()
@@ -24,6 +28,10 @@ namespace KpiLab_Labirint
             if (Visual == null)
             {
                 throw new System.Exception("You dont specify visual");
+            }
+            if (!Labirint.IsMazeGenerated)
+            {
+                Labirint.BeginMazeGeneration();
             }
             Visual.PrintMaze();
         }
@@ -47,7 +55,7 @@ namespace KpiLab_Labirint
         {
             BuildStep withoutGraphic();
 
-            BuildStep visualizeWith(VisualBase visual);
+            BuildStep visualizeWith(VisualBase visual, bool logGeneration = true);
         }
 
         public interface BuildStep
@@ -57,11 +65,6 @@ namespace KpiLab_Labirint
 
         private class Steps : MazeSimulator, LabirintStep, BotStep, VisualStep, BuildStep
         {
-            //LabirintBase Labirint;// = new LabirintType1(10, 10, rnd.Next());
-            //BotBase Bot;// = new Bot1();
-            //BotStatisticsHandler Stats;// = new BotStatisticsHandler(bot1);
-            //VisualBase Visual;// = new ConsoleDebugger(lab1, bot1, stats);
-            //BotFeeder Feeder;// = new BotFeeder(lab1, bot1);
 
             public BotStep withLabirint(LabirintBase labirintType)
             {
@@ -82,15 +85,15 @@ namespace KpiLab_Labirint
                 return this;
             }
 
-            public BuildStep visualizeWith(VisualBase visual)
+            public BuildStep visualizeWith(VisualBase visual, bool logGeneration = true)
             {
-                visual.Init(Labirint, Bot, BotStats, MazeStats);
+                visual.Init(Labirint, Bot, BotStats, MazeStats, logGeneration);
                 Visual = visual;
                 return this;
             }
             public MazeSimulator build()
             {
-                Feeder = new BotFeeder(Labirint, Bot);
+                Feeder = new BotFeeder(Labirint, Bot, MazeStats);
                 return this;
             }
 

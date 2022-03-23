@@ -5,13 +5,15 @@ namespace KpiLab_Labirint.maze
 {
     class LabirintType1 : LabirintBase
     {
-        public LabirintType1(int width, int height, int seed = 2343232) : base(width, height, seed)
+        public LabirintType1(int width, int height, int seed = 2343232) : base(width, height, seed){}
+        public override void BeginMazeGeneration()
         {
             labirintMap = GenerateLabirint(Height, Width);
+            InvokeMazeGenerated(steps);
         }
-
         private bool[,] GenerateLabirint(int height, int width)
         {
+            steps = 0;
             bool[,] curMap = new bool[height*2, width*2];
             List<Tuple<int, int>> visited = new List<Tuple<int, int>>();
             Tuple<int, int> startPos = new Tuple<int, int>(rnd.Next(height)*2, 0);
@@ -62,12 +64,13 @@ namespace KpiLab_Labirint.maze
                 visited.RemoveAt(pickIndex);
             }
             pickIndex = rnd.Next(avaliable.Count);
-            visited.Add(new Tuple<int, int>(picked.Item1 + avaliable[pickIndex].Item1,
-                                            picked.Item2 + avaliable[pickIndex].Item2));
-            curMap[picked.Item1 + avaliable[pickIndex].Item1,
-                   picked.Item2 + avaliable[pickIndex].Item2] = true; //new cell
+            int newX = picked.Item1 + avaliable[pickIndex].Item1;
+            int newY = picked.Item2 + avaliable[pickIndex].Item2;
+            visited.Add(new Tuple<int, int>(newX, newY));
+            curMap[newX, newY] = true; //new cell
             curMap[picked.Item1 + avaliable[pickIndex].Item1 / 2,
                    picked.Item2 + avaliable[pickIndex].Item2 / 2] = true;//path to cell
+            InvokeBuildStep(curMap);
         }
     }
 }

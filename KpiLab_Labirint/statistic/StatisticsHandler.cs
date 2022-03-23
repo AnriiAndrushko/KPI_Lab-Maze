@@ -29,9 +29,16 @@ namespace KpiLab_Labirint.statistic
     class MazeStatisticsHandler
     {
         private int generationSteps = 0;
+        public event Action<bool[,]> GeneratorStep;
+        public event Action GenerationFinished;
+        public void GenerateStepMap(bool[,] lab)
+        {
+            GeneratorStep?.Invoke(lab);
+        }
         public MazeStatisticsHandler(LabirintBase labirint)
         {
-            generationSteps = labirint.Steps;
+            labirint.BuildStep += GenerateStepMap;
+            labirint.MazeGenerated += (int steps) => { generationSteps = steps; GenerationFinished?.Invoke(); };
         }
         public int GenerationSteps
         {

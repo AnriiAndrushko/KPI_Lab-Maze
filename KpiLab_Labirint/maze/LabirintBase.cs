@@ -7,9 +7,24 @@ namespace KpiLab_Labirint.maze
         protected readonly int Height;
         protected readonly int Width;
         protected int steps;
+        public event Action<bool[,]> BuildStep;
+        public event Action<int> MazeGenerated;
+        protected bool isMazeGenerated;
+        public bool IsMazeGenerated {get { return isMazeGenerated; } }
+        public void InvokeBuildStep(bool[,] map)
+        {
+            BuildStep?.Invoke(map);
+        }
+        public void InvokeMazeGenerated(int stepsCount)
+        {
+            MazeGenerated?.Invoke(stepsCount);
+            isMazeGenerated = true;
+        }
+        abstract public void BeginMazeGeneration();
         public int Steps { get { return steps; }}
         protected LabirintBase(int height, int width, int seed)
         {
+            isMazeGenerated = false;
             steps = 0;
             rnd = new Random(seed);
             if (height < 5)

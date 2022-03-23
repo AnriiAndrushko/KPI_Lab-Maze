@@ -8,17 +8,37 @@ namespace KpiLab_Labirint.visual
         protected int BotX, BotY;
         protected BotStatisticsHandler BotStats;
         protected MazeStatisticsHandler MazeStats;
+        protected IMazeDataProvider MyMazeData;
         public VisualBase() { }
-        public virtual void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler botStats, MazeStatisticsHandler mazeStats)
+        public virtual void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler botStats, MazeStatisticsHandler mazeStats, bool generatorLog = true)
         {
-            MyMaze = inputData.GetData();
+            MyMazeData = inputData;
             MyBot = bot;
-            BotX = MyMaze.Start.Item2;
-            BotY = MyMaze.Start.Item1;
+
             MyBot.Step += PrintStepOnMaze;
             BotStats = botStats;
             MazeStats = mazeStats;
+            SetGeneratorLog(generatorLog);
+            MazeStats.GenerationFinished += InitSecondaryData;
         }
+        private void InitSecondaryData()
+        {
+            MyMaze = MyMazeData.GetData();
+            BotX = MyMaze.Start.Item2;
+            BotY = MyMaze.Start.Item1;
+        }
+        public void SetGeneratorLog(bool isOn)
+        {
+            if (isOn)
+            {
+                MazeStats.GeneratorStep += PrintMazeGenerationStep;
+            }
+            else
+            {
+                MazeStats.GeneratorStep -= PrintMazeGenerationStep;
+            }
+        }
+        public abstract void PrintMazeGenerationStep(bool[,] lab);
         public abstract void PrintMaze();
         protected abstract void PrintStepOnMaze(int len, int dir);
     }

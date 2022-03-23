@@ -1,4 +1,4 @@
-﻿using KpiLab_Labirint.maze;
+﻿using KpiLab_Labirint.statistic;
 using System;
 using System.Collections.Generic;
 
@@ -9,16 +9,23 @@ namespace KpiLab_Labirint.bots
         private MazeData MyMaze;
         private int CurX, CurY;
         private IBot MyBot;
+        IMazeDataProvider MyInputMaze;
+        private MazeStatisticsHandler MyMazeStatisticsHandler;
 
-
-
-        public BotFeeder(IMazeDataProvider InputMaze, IBot Bot)
+        public BotFeeder(IMazeDataProvider inputMaze, IBot bot, MazeStatisticsHandler stat)
         {
-            MyBot = Bot;
-            MyMaze = InputMaze.GetData();
-            CurY = MyMaze.Start.Item1;
-            CurX = MyMaze.Start.Item2;
-    
+            MyInputMaze = inputMaze;
+            MyBot = bot;
+            MyMazeStatisticsHandler = stat;
+            MyMazeStatisticsHandler.GenerationFinished += () =>
+            {
+
+                MyMaze = inputMaze.GetData();
+                CurY = MyMaze.Start.Item1;
+                CurX = MyMaze.Start.Item2;
+            };
+
+
             MyBot.Step += GetWays;
         }
 

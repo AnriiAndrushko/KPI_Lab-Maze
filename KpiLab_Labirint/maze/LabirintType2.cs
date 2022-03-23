@@ -6,14 +6,18 @@ namespace KpiLab_Labirint.maze
 {
     class LabirintType2 : LabirintBase
     {
-        public LabirintType2(int width, int height, int seed = 2343232) : base(width, height, seed)
+        public LabirintType2(int width, int height, int seed = 2343232) : base(width, height, seed){}
+
+        public override void BeginMazeGeneration()
         {
             labirintMap = GenerateLabirint(Height, Width);
+            InvokeMazeGenerated(steps);
         }
 
 
         private bool[,] GenerateLabirint(int height, int width)
         {
+            steps = 0;
             bool[,] curMap = new bool[height * 2, width * 2];
             Tuple<int, int> startPos = new Tuple<int, int>(rnd.Next(height) * 2, 0);
             LinkedList<Tuple<int, int>> path = new LinkedList<Tuple<int, int>>();
@@ -60,12 +64,17 @@ namespace KpiLab_Labirint.maze
                 return;
             }
             int pickIndex = rnd.Next(avaliable.Count);
-            Tuple<int, int> newCell = new Tuple<int, int>(path.Last().Item1 + avaliable[pickIndex].Item1,
-                                                          path.Last().Item2 + avaliable[pickIndex].Item2);
-            curMap[newCell.Item1, newCell.Item2] = true; //new cell
+
+            int newX = path.Last().Item1 + avaliable[pickIndex].Item1;
+            int newY = path.Last().Item2 + avaliable[pickIndex].Item2;
+
+            Tuple<int, int> newCell = new Tuple<int, int>(newX, newY);
+            curMap[newX, newY] = true; //new cell
             curMap[path.Last().Item1 + avaliable[pickIndex].Item1 / 2,
                    path.Last().Item2 + avaliable[pickIndex].Item2 / 2] = true;//path to cell
+            InvokeBuildStep(curMap);
             path.AddLast(newCell);
+
             RecursBuild(curMap, path);
         }
     }

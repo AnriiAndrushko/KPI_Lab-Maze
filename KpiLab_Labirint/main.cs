@@ -11,12 +11,13 @@ namespace KpiLab_Labirint
         {
             Random rnd = new Random();
             MazeSimulator Sim = new MazeSimBuilder().newSimulation().
-                                                     withLabirint(new LabirintType1(10, 10, rnd.Next())).
+                                                     withLabirint(new LabirintType2(10, 10, rnd.Next())).
                                                      withBot(new Bot1()).
-                                                     visualizeWith(new ConsoleDebugger()).
+                                                     visualizeWith(new ConsoleDebugger(), true).
                                                      build();
+
             Sim.PrintMazeInfo();
-            //Sim.StartSimulation();
+            Sim.StartSimulation();
             Console.WriteLine("Done");
             Console.ReadKey();
             Console.Clear();

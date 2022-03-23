@@ -5,9 +5,9 @@ namespace KpiLab_Labirint.visual
 {
     class ConsoleDebugger : VisualBase
     {
-        public override void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler botStats, MazeStatisticsHandler mazeStats)
+        public override void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler botStats, MazeStatisticsHandler mazeStats, bool generatorLog = true)
         {
-            base.Init(inputData, bot, botStats, mazeStats);
+            base.Init(inputData, bot, botStats, mazeStats, generatorLog);
         }
         public ConsoleDebugger() { }
         public override void PrintMaze()
@@ -81,6 +81,26 @@ namespace KpiLab_Labirint.visual
             Console.Write("\nThe number of iterations - " + BotStats.BotIterations + "\nThe number of steps - " + BotStats.BotSteps + "\n");
             Console.ReadKey();
             Console.WriteLine();
+        }
+
+        public override void PrintMazeGenerationStep(bool[,] lab)
+        {
+            for (int i = 0; i < lab.GetLength(0); i++)
+            {
+                for (int j = 0; j < lab.GetLength(1); j++)
+                {
+                    if (lab[i, j])
+                    {
+                        Console.Write(" ");
+                        continue;
+                    }
+                    Console.Write("0");
+
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.ReadKey();
         }
     }
 }
