@@ -46,14 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MazeSimulator.cs" />
-    <Compile Include="StatisticsHandler.cs" />
+    <Compile Include="statistic\StatisticsHandler.cs" />
     <Compile Include="bots\Bot1.cs" />
     <Compile Include="bots\BotBase.cs" />
     <Compile Include="bots\stack\Stack.cs" />
     <Compile Include="bots\tree\MazeTree.cs" />
     <Compile Include="bots\tree\NodeT.cs" />
     <Compile Include="bots\BotFeeder.cs" />
-    <Compile Include="ConsoleDebugger.cs" />
+    <Compile Include="visual\ConsoleDebugger.cs" />
     <Compile Include="IBot.cs" />
     <Compile Include="IMazeDataProvider.cs" />
     <Compile Include="main.cs" />
@@ -62,7 +62,7 @@
     <Compile Include="maze\LabirintType1.cs" />
     <Compile Include="maze\LabirintType2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisualBase.cs" />
+    <Compile Include="visual\VisualBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

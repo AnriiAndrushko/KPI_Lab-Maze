@@ -1,6 +1,7 @@
 ﻿using KpiLab_Labirint.bots;
 using KpiLab_Labirint.maze;
-
+using KpiLab_Labirint.visual;
+using KpiLab_Labirint.statistic;
 namespace KpiLab_Labirint
 {
     class MazeSimulator
@@ -12,6 +13,9 @@ namespace KpiLab_Labirint
         protected BotFeeder Feeder;// = new BotFeeder(lab1, bot1);
         public void StartSimulation()
         {
+            if (Labirint == null) {
+                throw new System.Exception("USE CONSTRUCTOR!!!");
+            }
             Feeder.StartSearching();
         }
     }
@@ -72,11 +76,11 @@ namespace KpiLab_Labirint
             {
                 visual.Init(Labirint, Bot, Stats);
                 Visual = visual;
-                Feeder = new BotFeeder(Labirint, Bot);
                 return this;
             }
             public MazeSimulator build()
             {
+                Feeder = new BotFeeder(Labirint, Bot);
                 return this;
             }
 

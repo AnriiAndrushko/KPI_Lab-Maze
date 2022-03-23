@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KpiLab_Labirint
+namespace KpiLab_Labirint.statistic
 {
     class BotStatisticsHandler
     {

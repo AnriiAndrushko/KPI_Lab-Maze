@@ -1,4 +1,5 @@
-﻿namespace KpiLab_Labirint
+﻿using KpiLab_Labirint.statistic;
+namespace KpiLab_Labirint.visual
 {
     abstract class VisualBase
     {
