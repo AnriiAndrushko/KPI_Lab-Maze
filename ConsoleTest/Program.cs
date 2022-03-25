@@ -3,6 +3,7 @@ using KpiLab_Labirint.maze;
 using KpiLab_Labirint.visual;
 using KpiLab_Labirint;
 
+
 Random rnd = new Random();
 MazeSimulator Sim = new MazeSimBuilder().newSimulation().
                                          withLabirint(new LabirintType2(10, 10, rnd.Next())).

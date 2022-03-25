@@ -2,6 +2,9 @@
 using KpiLab_Labirint.maze;
 using KpiLab_Labirint.visual;
 using KpiLab_Labirint.statistic;
+using System.Drawing;
+using System;
+
 namespace KpiLab_Labirint
 {
     public class MazeSimulator
@@ -22,6 +25,17 @@ namespace KpiLab_Labirint
                 Labirint.BeginMazeGeneration();
             }
             Feeder.StartSearching();
+        }
+        public void GenerateMaze()
+        {
+            if (Labirint == null)
+            {
+                throw new System.Exception("USE CONSTRUCTOR!!!");
+            }
+            if (!Labirint.IsMazeGenerated)
+            {
+                Labirint.BeginMazeGeneration();
+            }
         }
         public void PrintMazeInfo()
         {
@@ -55,11 +69,13 @@ namespace KpiLab_Labirint
         {
             BuildStep withoutGraphic();
 
-            BuildStep visualizeWith(VisualBase visual, bool logGeneration = true);
+            BuildStep visualizeWith(VisualBase visual, bool logGeneration = true);            
+            BuildStep visualizeWith(ref Action<Graphics> drawTick, bool logGeneration = true, int cellSize = 20, int shiftX = 20, int shiftY = 10);
         }
 
         public interface BuildStep
         {
+            BuildStep visualizeWith(ref Action<Graphics> drawTick, bool logGeneration = true, int cellSize = 20, int shiftX = 20, int shiftY = 10);
             BuildStep visualizeWith(VisualBase visual, bool logGeneration = true);
             MazeSimulator build();
         }
@@ -90,6 +106,14 @@ namespace KpiLab_Labirint
             {
                 visual.Init(Labirint, Bot, BotStats, MazeStats, logGeneration);
                 Visual = visual;
+                return this;
+            }
+            public BuildStep visualizeWith(ref Action<Graphics> drawTick, bool logGeneration = true, int cellSize = 20, int shiftX = 20, int shiftY = 10)
+            {
+                WinFormVisual visual = new WinFormVisual(shiftX, shiftY, cellSize);
+                visual.Init(Labirint, Bot, BotStats, MazeStats, logGeneration);
+                Visual = visual;
+                drawTick += visual.DrawFrame;
                 return this;
             }
             public MazeSimulator build()

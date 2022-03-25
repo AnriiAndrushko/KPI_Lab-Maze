@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KpiLab_Labirint", "KpiLab_L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormTest", "WinFormTest\WinFormTest.csproj", "{C0426E5B-82D9-439E-827D-4F03A41F7589}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0426E5B-82D9-439E-827D-4F03A41F7589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0426E5B-82D9-439E-827D-4F03A41F7589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0426E5B-82D9-439E-827D-4F03A41F7589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0426E5B-82D9-439E-827D-4F03A41F7589}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
