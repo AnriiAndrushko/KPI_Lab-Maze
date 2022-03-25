@@ -2,26 +2,26 @@
 
 namespace KpiLab_Labirint.maze
 {
-    abstract class LabirintBase : IMazeDataProvider
+    abstract public class LabirintBase : IMazeDataProvider
     {
-        protected readonly int Height;
-        protected readonly int Width;
-        protected int steps;
-        public event Action<bool[,]> BuildStep;
-        public event Action<int> MazeGenerated;
+        protected internal readonly int Height;
+        protected internal readonly int Width;
+        protected private int steps;
+        internal event Action<bool[,]> BuildStep;
+        internal event Action<int> MazeGenerated;
         protected bool isMazeGenerated;
-        public bool IsMazeGenerated {get { return isMazeGenerated; } }
-        public void InvokeBuildStep(bool[,] map)
+        internal bool IsMazeGenerated {get { return isMazeGenerated; } }
+        internal void InvokeBuildStep(bool[,] map)
         {
             BuildStep?.Invoke(map);
         }
-        public void InvokeMazeGenerated(int stepsCount)
+        internal void InvokeMazeGenerated(int stepsCount)
         {
             MazeGenerated?.Invoke(stepsCount);
             isMazeGenerated = true;
         }
-        abstract public void BeginMazeGeneration();
-        public int Steps { get { return steps; }}
+        abstract internal void BeginMazeGeneration();
+        internal int Steps { get { return steps; }}
         protected LabirintBase(int height, int width, int seed)
         {
             isMazeGenerated = false;
@@ -44,14 +44,15 @@ namespace KpiLab_Labirint.maze
                 Width = width;
             }
         }
-        public MazeData GetData()
+
+        MazeData IMazeDataProvider.GetData()
         {
             return new MazeData(labirintMap, startPos, endPos);
         }
 
-        protected bool[,] labirintMap;
-        protected Random rnd;
-        protected Tuple<int, int> startPos;
-        protected Tuple<int, int> endPos;
+        protected internal bool[,] labirintMap;
+        protected internal Random rnd;
+        protected internal Tuple<int, int> startPos;
+        protected internal Tuple<int, int> endPos;
     }
 }

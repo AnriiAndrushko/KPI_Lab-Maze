@@ -2,7 +2,7 @@
 
 namespace KpiLab_Labirint
 {
-    class MazeData
+    internal class MazeData
     {
         public bool[,] LabData { get; }
         public Tuple<int, int> Start { get; }

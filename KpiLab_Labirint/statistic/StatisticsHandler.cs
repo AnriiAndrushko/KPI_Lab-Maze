@@ -3,11 +3,11 @@ using KpiLab_Labirint.maze;
 
 namespace KpiLab_Labirint.statistic
 {
-    class BotStatisticsHandler
+    internal class BotStatisticsHandler
     {
         private int botIterations;
         private int botSteps;
-        public BotStatisticsHandler(IBot bot)
+        internal BotStatisticsHandler(IBot bot)
         {
             botIterations = 0;
             botSteps = 0;
@@ -26,7 +26,7 @@ namespace KpiLab_Labirint.statistic
             set { if (value <= botSteps) { throw new Exception(); } else { botSteps = value; } }
         }
     }
-    class MazeStatisticsHandler
+    internal class MazeStatisticsHandler
     {
         private int generationSteps = 0;
         public event Action<bool[,]> GeneratorStep;

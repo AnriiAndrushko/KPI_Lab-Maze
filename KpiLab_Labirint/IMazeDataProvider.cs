@@ -1,6 +1,6 @@
 ﻿namespace KpiLab_Labirint
 {
-    interface IMazeDataProvider
+    internal interface IMazeDataProvider
     {
         MazeData GetData();
     }

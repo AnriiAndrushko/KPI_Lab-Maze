@@ -1,16 +1,16 @@
 ﻿using KpiLab_Labirint.statistic;
 namespace KpiLab_Labirint.visual
 {
-    abstract class VisualBase
+    abstract public class VisualBase
     {
-        protected MazeData MyMaze;
-        protected IBot MyBot;
-        protected int BotX, BotY;
-        protected BotStatisticsHandler BotStats;
-        protected MazeStatisticsHandler MazeStats;
-        protected IMazeDataProvider MyMazeData;
-        public VisualBase() { }
-        public virtual void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler botStats, MazeStatisticsHandler mazeStats, bool generatorLog = true)
+        protected private MazeData MyMaze;
+        protected private IBot MyBot;
+        protected private int BotX, BotY;
+        protected private BotStatisticsHandler BotStats;
+        protected private MazeStatisticsHandler MazeStats;
+        protected private IMazeDataProvider MyMazeData;
+        internal VisualBase() { }
+        internal virtual void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler botStats, MazeStatisticsHandler mazeStats, bool generatorLog = true)
         {
             MyMazeData = inputData;
             MyBot = bot;
@@ -27,7 +27,7 @@ namespace KpiLab_Labirint.visual
             BotX = MyMaze.Start.Item2;
             BotY = MyMaze.Start.Item1;
         }
-        public void SetGeneratorLog(bool isOn)
+        internal void SetGeneratorLog(bool isOn)
         {
             if (isOn)
             {
@@ -38,8 +38,8 @@ namespace KpiLab_Labirint.visual
                 MazeStats.GeneratorStep -= PrintMazeGenerationStep;
             }
         }
-        public abstract void PrintMazeGenerationStep(bool[,] lab);
-        public abstract void PrintMaze();
+        internal abstract void PrintMazeGenerationStep(bool[,] lab);
+        internal abstract void PrintMaze();
         protected abstract void PrintStepOnMaze(int len, int dir);
     }
 }

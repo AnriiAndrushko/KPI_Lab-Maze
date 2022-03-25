@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace KpiLab_Labirint.bots
 {
-    class Bot1 : BotBase
+    public class Bot1 : BotBase
     {
 
         public Bot1(){ }
 
-        public override void MakeDecision(List<Tuple<int, int>>[] derection, int SizeArray)      
+        internal protected override void MakeDecision(List<Tuple<int, int>>[] derection, int SizeArray)      
         {
             if (Memory.Exit())
 	        {

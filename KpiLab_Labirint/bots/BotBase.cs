@@ -5,18 +5,30 @@ using Stack = KpiLab_Labirint.bots.Stack;
 
 namespace KpiLab_Labirint 
 {
-    abstract class BotBase : IBot
+    abstract public class BotBase : IBot
     {
-        protected MazeTree Memory = new MazeTree();
-        protected Stack GoBack = new Stack();
-        protected bool BotWentBack = false; 
-        public event Action<int, int> Step;
+        protected private MazeTree Memory = new MazeTree();
+        protected private Stack GoBack = new Stack();
+        protected private bool BotWentBack = false;
 
-        protected void InvokeStep(int len, int dir)
+        internal Action<int, int> Step { get; private set; }
+
+        event Action<int, int> IBot.Step
+        {
+            add { Step += value; }
+            remove { Step -= value; }
+        }
+
+        protected private void InvokeStep(int len, int dir)
         {
             Step?.Invoke(len, dir);
         }
 
-        public abstract void MakeDecision(List<Tuple<int,int>>[] derection, int SizeArray = 4);
+        protected internal abstract void MakeDecision(List<Tuple<int,int>>[] derection, int SizeArray = 4);
+
+        void IBot.MakeDecision(List<Tuple<int, int>>[] derection, int SizeArray)
+        {
+            MakeDecision(derection, SizeArray);
+        }
     }
 }

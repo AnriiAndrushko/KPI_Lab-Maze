@@ -3,14 +3,14 @@ using KpiLab_Labirint.statistic;
 
 namespace KpiLab_Labirint.visual
 {
-    class ConsoleDebugger : VisualBase
+    public class ConsoleDebugger : VisualBase
     {
-        public override void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler botStats, MazeStatisticsHandler mazeStats, bool generatorLog = true)
+        internal override void Init(IMazeDataProvider inputData, IBot bot, BotStatisticsHandler botStats, MazeStatisticsHandler mazeStats, bool generatorLog = true)
         {
             base.Init(inputData, bot, botStats, mazeStats, generatorLog);
         }
         public ConsoleDebugger() { }
-        public override void PrintMaze()
+        internal override void PrintMaze()
         {
             for (int i = 0; i < MyMaze.LabData.GetLength(0); i++)
             {
@@ -83,7 +83,7 @@ namespace KpiLab_Labirint.visual
             Console.WriteLine();
         }
 
-        public override void PrintMazeGenerationStep(bool[,] lab)
+        internal override void PrintMazeGenerationStep(bool[,] lab)
         {
             for (int i = 0; i < lab.GetLength(0); i++)
             {
@@ -101,6 +101,7 @@ namespace KpiLab_Labirint.visual
             }
             Console.WriteLine();
             Console.ReadKey();
+            Console.WriteLine();
         }
     }
 }

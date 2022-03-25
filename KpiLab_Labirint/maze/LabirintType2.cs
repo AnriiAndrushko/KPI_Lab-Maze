@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace KpiLab_Labirint.maze
 {
-    class LabirintType2 : LabirintBase
+    public class LabirintType2 : LabirintBase
     {
         public LabirintType2(int width, int height, int seed = 2343232) : base(width, height, seed){}
 
-        public override void BeginMazeGeneration()
+        internal override void BeginMazeGeneration()
         {
             labirintMap = GenerateLabirint(Height, Width);
             InvokeMazeGenerated(steps);

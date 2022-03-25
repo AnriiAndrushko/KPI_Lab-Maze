@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1433
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KpiLab_Labirint", "KpiLab_Labirint\KpiLab_Labirint.csproj", "{058ECBF5-5750-4780-8864-9826C8818A81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{058ECBF5-5750-4780-8864-9826C8818A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{058ECBF5-5750-4780-8864-9826C8818A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{058ECBF5-5750-4780-8864-9826C8818A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C7BCF09-C4C5-45D8-AA86-3F9B1B03362C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

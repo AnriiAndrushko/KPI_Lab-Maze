@@ -4,14 +4,14 @@ using KpiLab_Labirint.visual;
 using KpiLab_Labirint.statistic;
 namespace KpiLab_Labirint
 {
-    class MazeSimulator
+    public class MazeSimulator
     {
-        protected LabirintBase Labirint;// = new LabirintType1(10, 10, rnd.Next());
-        protected BotBase Bot;// = new Bot1();
-        protected BotStatisticsHandler BotStats;
-        protected MazeStatisticsHandler MazeStats;// = new BotStatisticsHandler(bot1);
-        protected VisualBase Visual;// = new ConsoleDebugger(lab1, bot1, stats);
-        protected BotFeeder Feeder;// = new BotFeeder(lab1, bot1);
+        protected private LabirintBase Labirint;// = new LabirintType1(10, 10, rnd.Next());
+        protected private BotBase Bot;// = new Bot1();
+        protected private BotStatisticsHandler BotStats;
+        protected private MazeStatisticsHandler MazeStats;// = new BotStatisticsHandler(bot1);
+        protected private VisualBase Visual;// = new ConsoleDebugger(lab1, bot1, stats);
+        protected private BotFeeder Feeder;// = new BotFeeder(lab1, bot1);
         public void StartSimulation()
         {
             if (Labirint == null) {
@@ -36,7 +36,7 @@ namespace KpiLab_Labirint
             Visual.PrintMaze();
         }
     }
-    class MazeSimBuilder
+    public class MazeSimBuilder
     {
         public LabirintStep newSimulation()
         {

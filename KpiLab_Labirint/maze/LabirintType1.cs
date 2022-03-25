@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KpiLab_Labirint.maze
 {
-    class LabirintType1 : LabirintBase
+    public class LabirintType1 : LabirintBase
     {
         public LabirintType1(int width, int height, int seed = 2343232) : base(width, height, seed){}
-        public override void BeginMazeGeneration()
+        internal override void BeginMazeGeneration()
         {
             labirintMap = GenerateLabirint(Height, Width);
             InvokeMazeGenerated(steps);
