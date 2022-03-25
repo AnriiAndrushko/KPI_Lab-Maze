@@ -60,6 +60,7 @@ namespace KpiLab_Labirint
 
         public interface BuildStep
         {
+            BuildStep visualizeWith(VisualBase visual, bool logGeneration = true);
             MazeSimulator build();
         }
 
