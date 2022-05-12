@@ -9,9 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="KpiLab_Labirint">
-      <HintPath>..\KpiLab_Labirint\bin\Debug\KpiLab_Labirint.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\KpiLab_Labirint\KpiLab_Labirint.csproj" />
   </ItemGroup>
 
 </Project>
