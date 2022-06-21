@@ -11,25 +11,22 @@ namespace WinFormTest
         MazeSimulator Sim;
         bool isStarted = false;
         bool newStep = false;
+
         public MainWindow()
         {
             InitializeComponent();
-            SimSpeed.Text = DrawTick.Interval.ToString();
-            CellSize.Text = "10";
+            SimSpeedBar.Value = DrawTick.Interval;
 
+            BotSelectionBox.Items.AddRange(new string[] { "Left hand rule" });
+            BotSelectionBox.Text = BotSelectionBox.Items[0].ToString();                
+            MazeSelectionBox.Items.AddRange(new string[] { "Type1","Type2" });
+            MazeSelectionBox.Text = MazeSelectionBox.Items[0].ToString();
 
             this.SetStyle(ControlStyles.UserPaint, true);
-
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-
             this.SetStyle(ControlStyles.ResizeRedraw, true);
-
             this.UpdateStyles();
-
-
-
         }
 
         private void DrawTick_Tick(object sender, EventArgs e)
@@ -37,17 +34,14 @@ namespace WinFormTest
             if (isStarted) { this.Invalidate();
                 newStep = true;
             }
-            
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            if (isStarted&& newStep)
+            if (isStarted && newStep)
             {
                 newStep = false;
                 test?.Invoke(e.Graphics);
-
             }
-
         }
 
         private void Start_Btn_Click(object sender, EventArgs e)
@@ -56,24 +50,33 @@ namespace WinFormTest
             Sim.StartSimulation();
         }
 
-        private void SimSpeed_TextChanged(object sender, EventArgs e)
-        {
-            int ticks;
-            if(Int32.TryParse(SimSpeed.Text, out ticks))
-            {
-                DrawTick.Interval = ticks;
-            }
-            
-        }
-
         private void startGenerating_Click(object sender, EventArgs e)
         {
-            int cellSize;
-            Int32.TryParse(CellSize.Text, out cellSize);
+            if (test!=null)
+            {
+                test = null; //to free memory from previous run 
+            }
+            int winSizeMagicNumber = 220;
+            int mazeSize = MazeSizeBar.Value;
+            int drawSize = (winSizeMagicNumber / (mazeSize+1));
+
+            LabirintBase selectedMaze = MazeSelectionBox.SelectedIndex switch
+            {
+                0 => new LabirintType1(mazeSize, mazeSize, rnd.Next()),
+                1 => new LabirintType2(mazeSize, mazeSize, rnd.Next()),
+                _ => new LabirintType1(mazeSize, mazeSize, rnd.Next())
+            };
+
+            BotBase selectedBot = BotSelectionBox.SelectedIndex switch
+            {
+                0 => new Bot1(),
+                _ => new Bot1()
+            };
+  
             Sim = new MazeSimBuilder().newSimulation().
-                         withLabirint(new LabirintType1(20, 20, rnd.Next())).
-                         withBot(new Bot1()).
-                         visualizeWith(ref test, true, cellSize).
+                         withLabirint(selectedMaze).
+                         withBot(selectedBot).
+                         visualizeWith(ref test, true, drawSize).
                          build();
             Sim.GenerateMaze();
             Start_Btn.Enabled = true;
@@ -83,6 +86,11 @@ namespace WinFormTest
         private void pause_Click(object sender, EventArgs e)
         {
             isStarted = !isStarted;
+        }
+
+        private void SimSpeedBar_Scroll(object sender, EventArgs e)
+        {
+            DrawTick.Interval = SimSpeedBar.Maximum - SimSpeedBar.Value + SimSpeedBar.Minimum;
         }
     }
 }

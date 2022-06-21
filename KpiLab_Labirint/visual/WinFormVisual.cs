@@ -8,9 +8,9 @@ namespace KpiLab_Labirint.visual
     {
         private Queue<byte[,]> frames = new Queue<byte[,]>();
         private byte[,] curFrame;
-        private int cellSize;
-        private int shiftX;
-        private int shiftY;
+        private readonly int cellSize;
+        private readonly int shiftX;
+        private readonly int shiftY;
         internal void DrawFrame(Graphics g)
         {
             if (frames.Count >= 1)
